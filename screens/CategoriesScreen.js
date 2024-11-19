@@ -1,8 +1,10 @@
 import { CATEGORIES } from '../data/dummy-data';
+import { FlatList } from 'react-native';
+import CategoryGridTitle from '../components/CategoryGridTitle';
 
 function renderCategoryItem(itemData) {
   return (
-    <CategoryGridTile title={itemData.item.title} color={itemData.item.color} />
+    <CategoryGridTitle title={itemData.item.title} color={itemData.item.color}/>
   );
 }
 
