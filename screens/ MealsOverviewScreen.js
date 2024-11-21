@@ -1,13 +1,15 @@
 import { MEALS } from '../data/dummy-data';
 import { StyleSheet, View, Text } from 'react-native';
 
-function MealsOverviewScreen() {
-  return (
-    <View>
-      <Text>Meals Overview Screen</Text>
-    </View>
-  );
-}
+function MealsOverviewScreen({ route }) {
+    const catId = route.params.categoryId;
+  
+    return (
+      <View style={styles.container}>
+        <Text>Meals Overview Screen - {catId}</Text>
+      </View>
+    );
+  }
 
 export default MealsOverviewScreen;
 
