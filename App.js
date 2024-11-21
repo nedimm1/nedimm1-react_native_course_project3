@@ -1,8 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import CategoriesScreen from './screens/CategoriesScreen';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import MealsOverviewScreen from "./screens/ MealsOverviewScreen";
+import CategoriesScreen from "./screens/CategoriesScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -12,10 +13,16 @@ export default function App() {
       <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen 
-            name="MealCategories" 
-            component={CategoriesScreen} 
-            options={{ title: "Meal Categories" }} 
+          <Stack.Screen
+            name="MealCategories"
+            component={CategoriesScreen}
+            options={{ title: "Meal Categories" }}
+          />
+
+          <Stack.Screen
+            name="MealsOverview"
+            component={MealsOverviewScreen}
+            options={{ title: "Meal Categories" }}
           />
         </Stack.Navigator>
       </NavigationContainer>
@@ -26,8 +33,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
