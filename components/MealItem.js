@@ -1,11 +1,19 @@
-import { View, Pressable, Text, Image, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, Pressable, Text, Image, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import MealDetails from "./MealDetails";
 
-function MealItem({ title, imageUrl, affordability, complexity, duration, id }) {
+function MealItem({
+  title,
+  imageUrl,
+  affordability,
+  complexity,
+  duration,
+  id,
+}) {
   const navigation = useNavigation();
 
   function selectMealItemHandler() {
-    navigation.navigate('MealDetails', {
+    navigation.navigate("MealDetails", {
       mealId: id,
     });
   }
@@ -20,9 +28,11 @@ function MealItem({ title, imageUrl, affordability, complexity, duration, id }) 
           <Image source={{ uri: imageUrl }} style={styles.image} />
           <Text style={styles.title}>{title}</Text>
           <View style={styles.infoContainer}>
-            <Text style={styles.infoText}>{affordability}</Text>
-            <Text style={styles.infoText}>{complexity}</Text>
-            <Text style={styles.infoText}>{duration}m</Text>
+            <MealDetails
+              duration={duration}
+              complexity={complexity}
+              affordability={affordability}
+            />
           </View>
         </View>
       </Pressable>
@@ -36,9 +46,9 @@ const styles = StyleSheet.create({
   mealItem: {
     margin: 16,
     borderRadius: 10,
-    overflow: 'hidden',
-    backgroundColor: 'white',
-    shadowColor: 'black',
+    overflow: "hidden",
+    backgroundColor: "white",
+    shadowColor: "black",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 8,
@@ -46,31 +56,31 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     borderRadius: 10,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   buttonPressed: {
     opacity: 0.75,
   },
   image: {
-    width: '100%',
+    width: "100%",
     height: 200,
   },
   title: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 18,
-    textAlign: 'center',
+    textAlign: "center",
     marginVertical: 8,
-    color: '#333',
+    color: "#333",
   },
   infoContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
     paddingVertical: 8,
-    backgroundColor: '#f8f8f8',
+    backgroundColor: "#f8f8f8",
   },
   infoText: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
   },
 });
