@@ -1,30 +1,92 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, ScrollView, StyleSheet } from "react-native";
 import MealDetails from "../components/MealDetails";
 import { MEALS } from "../data/dummy-data";
 
 function MealDetailScreen({ route }) {
   const mealId = route.params.mealId;
-
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
   return (
-    <View>
-      <Image source={{ uri: selectedMeal.imageUrl }} />
-      <Text>{selectedMeal.title}</Text>
+    <ScrollView contentContainerStyle={styles.screen}>
+      <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
+      <Text style={styles.title}>{selectedMeal.title}</Text>
       <MealDetails
         duration={selectedMeal.duration}
         complexity={selectedMeal.complexity}
         affordability={selectedMeal.affordability}
+        style={styles.details}
       />
-      <Text>Ingredients</Text>
-      {selectedMeal.ingredients.map((ingredient) => (
-        <Text key={ingredient}>{ingredient}</Text>
-      ))}
-      <Text>Steps</Text>
-      {selectedMeal.steps.map((step) => (
-        <Text key={step}>{step}</Text>
-      ))}
-    </View>
+      <Text style={styles.sectionTitle}>Ingredients</Text>
+      <View style={styles.listContainer}>
+        {selectedMeal.ingredients.map((ingredient) => (
+          <View key={ingredient} style={styles.ingredientItem}>
+            <Text style={styles.ingredientText}>{ingredient}</Text>
+          </View>
+        ))}
+      </View>
+      <Text style={styles.sectionTitle}>Steps</Text>
+      <View style={styles.listContainer}>
+        {selectedMeal.steps.map((step) => (
+          <Text key={step} style={styles.stepText}>
+            {step}
+          </Text>
+        ))}
+      </View>
+    </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  screen: {
+    padding: 16,
+    backgroundColor: "#121212",
+  },
+  image: {
+    width: "100%",
+    height: 250,
+    borderRadius: 8,
+    marginBottom: 16,
+  },
+  title: {
+    fontSize: 26,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#fff",
+    marginBottom: 8,
+  },
+  details: {
+    marginBottom: 16,
+  },
+  sectionTitle: {
+    fontSize: 22,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#fff",
+    marginTop: 16,
+    marginBottom: 8,
+  },
+  listContainer: {
+    marginBottom: 16,
+  },
+  ingredientItem: {
+    borderWidth: 1,
+    borderColor: "#888",
+    borderRadius: 8,
+    padding: 10,
+    marginVertical: 4,
+    backgroundColor: "#1e1e1e",
+  },
+  ingredientText: {
+    fontSize: 16,
+    color: "#fff",
+    textAlign: "center",
+  },
+  stepText: {
+    fontSize: 16,
+    color: "#fff",
+    textAlign: "center",
+    marginBottom: 8,
+  },
+});
 
 export default MealDetailScreen;
